@@ -19,11 +19,11 @@
  * Contributor(s):
  **/
 	
-function openvbx_mail($recipient, $subject, $template, $maildata = array())
+function openvbx_mail($recipient, $subject, $template, $maildata = array(), $messagecaller)
 {	
 	$ci = &get_instance();
 	
-	$from_email = $ci->settings->get('from_email', $ci->tenant->id);
+	$from_email = $messagecaller . '@sms.' . $domain;
 	if(empty($from_email))
 	{
 		$domain = $ci->config->item('server_name');
