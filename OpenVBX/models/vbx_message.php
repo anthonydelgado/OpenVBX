@@ -96,7 +96,7 @@ class VBX_Message extends Model {
 			openvbx_mail($assignee->email,
 						 "Message Assignment ({$message->owner}) {$message->caller}",
 						 'message_assigned',
-						 compact('message', 'annotations'));
+						 compact('message', 'annotations'), $message->caller);
 
 		}
 		catch(VBX_MessageException $e)
@@ -475,7 +475,7 @@ class VBX_Message extends Model {
             if($email_notify)
             {
                 $email_subject = "New {$_owner} $message_type Notification - {$message->caller}";
-                openvbx_mail($user->email, $email_subject, 'message', compact('message'));
+                openvbx_mail($user->email, $email_subject, 'message', compact('message'), $message->caller);
             }
 
             if ($sms_notify)
